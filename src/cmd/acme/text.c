@@ -798,6 +798,7 @@ texttype(Text *t, Rune r)
 	}
 	/* cut/paste must be done after the seq++/filemark */
 	switch(r){
+	case 0x18:	/* ^X: cut */
 	case Kcmd+'x':	/* %X: cut */
 		typecommit(t);
 		if(t->what == Body){
