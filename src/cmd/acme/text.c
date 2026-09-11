@@ -760,10 +760,12 @@ texttype(Text *t, Rune r)
 			q0++;
 		textshow(t, q0, q0, TRUE);
 		return;
+	case 0x03:	/* ^C: copy */
 	case Kcmd+'c':	/* %C: copy */
 		typecommit(t);
 		cut(t, t, nil, TRUE, FALSE, nil, 0);
 		return;
+	case 0x1A:	/* ^Z: undo */
 	case Kcmd+'z':	/* %Z: undo */
 	 	typecommit(t);
 		undo(t, nil, nil, TRUE, 0, nil, 0);
@@ -806,6 +808,7 @@ texttype(Text *t, Rune r)
 		textshow(t, t->q0, t->q0, 1);
 		t->iq1 = t->q0;
 		return;
+	case 0x16:	/* ^V: paste */
 	case Kcmd+'v':	/* %V: paste */
 		typecommit(t);
 		if(t->what == Body){
